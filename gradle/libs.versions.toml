@@ -2,6 +2,8 @@
 com-fasterxml-jackson = "2.18.2"
 info-picocli = "4.7.6"
 org-slf4j = "2.0.17"
+org-junit-jupiter = "5.12.0"
+junit-platform = "1.12.0" # Přidána verze pro junit-platform
 
 [libraries]
 com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "com-fasterxml-jackson" }
@@ -12,7 +14,9 @@ info-picocli-picocli-codegen = { module = "info.picocli:picocli-codegen", versio
 org-apache-commons-commons-collections4 = "org.apache.commons:commons-collections4:4.4"
 org-apache-commons-commons-io = "commons-io:commons-io:2.18.0"
 org-apache-commons-commons-text = "org.apache.commons:commons-text:1.13.0"
+org-junit-jupiter-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "org-junit-jupiter" }
 org-junit-jupiter-junit-jupiter = "org.junit.jupiter:junit-jupiter:5.12.0"
+org-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" } # Přidáno
 org-junit-junit-bom = "org.junit:junit-bom:5.12.0"
 org-slf4j-slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "org-slf4j" }
 org-slf4j-slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "org-slf4j" }

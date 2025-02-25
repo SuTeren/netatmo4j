@@ -1,13 +1,12 @@
 package net.suteren.netatmo.client;
 
+import org.apache.commons.collections4.MapUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import org.apache.commons.collections4.MapUtils;
-
 import net.suteren.netatmo.auth.AuthClient;
 
 /**
@@ -15,6 +14,11 @@ import net.suteren.netatmo.auth.AuthClient;
  * Using this client, <code>Authorization: Bearer $TOKEN</code> is added to the request.
  */
 public class AbstractApiClient extends AbstractNetatmoClient {
+	/**
+	 * Creates a new AbstractApiClient with the given AuthClient.
+	 *
+	 * @param auth the AuthClient to use for authorization.
+	 */
 	public AbstractApiClient(AuthClient auth) {
 		this.auth = auth;
 	}

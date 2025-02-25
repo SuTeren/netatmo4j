@@ -29,6 +29,8 @@ dependencies {
 
 	testImplementation platform(libs.org.junit.junit.bom)
 	testImplementation libs.org.junit.jupiter.junit.jupiter
+	testRuntimeOnly libs.org.junit.jupiter.junit.jupiter.engine
+	testImplementation libs.org.junit.platform.launcher
 }
 
 compileJava {
