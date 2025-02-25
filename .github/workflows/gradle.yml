@@ -38,3 +38,10 @@ jobs:
         uses: codecov/codecov-action@v5
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Publish Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: JUnit Test Report
+          path: build/test-results/test/*.xml
+          reporter: java-junit
