@@ -1,13 +1,12 @@
 package net.suteren.netatmo.client;
 
+import org.apache.commons.collections4.MapUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import org.apache.commons.collections4.MapUtils;
-
 import net.suteren.netatmo.auth.AuthClient;
 
 /**
