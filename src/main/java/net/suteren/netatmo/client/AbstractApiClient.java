@@ -15,6 +15,11 @@ import net.suteren.netatmo.auth.AuthClient;
  * Using this client, <code>Authorization: Bearer $TOKEN</code> is added to the request.
  */
 public class AbstractApiClient extends AbstractNetatmoClient {
+	/**
+	 * Creates a new AbstractApiClient with the given AuthClient.
+	 *
+	 * @param auth the AuthClient to use for authorization.
+	 */
 	public AbstractApiClient(AuthClient auth) {
 		this.auth = auth;
 	}

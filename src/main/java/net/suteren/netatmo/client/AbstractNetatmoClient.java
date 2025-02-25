@@ -1,3 +1,41 @@
+package net.suteren.netatmo.domain.therm;
+
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Representation of the Module entity from the Netatmo API server.
+ *
+ * @param id module id.
+ * @param name module name.
+ * @param type module type.
+ * @param room module room id.
+ * @param module ThermModule.
+ * @param rfStatus radio status.
+ * @param firmware firmware version.
+ * @param lastSetup last setup timestamp.
+ * @param batteryVp battery status.
+ * @param batteryPercent battery percentage.
+ * @param reachable is reachable.
+ * @param dashboardData data from the module.
+ */
+public record Module(
+	String id,
+	String name,
+	String type,
+	String room,
+	@JsonProperty("module") String module,
+	@JsonProperty("rf_status") String rfStatus,
+	String firmware,
+	@JsonProperty("last_setup") Long lastSetup,
+	@JsonProperty("battery_vp") Integer batteryVp,
+	@JsonProperty("battery_percent") Integer batteryPercent,
+	Boolean reachable,
+	DashboardData dashboardData
+) {
+}
+
 package net.suteren.netatmo.client;
 
 import java.io.IOException;

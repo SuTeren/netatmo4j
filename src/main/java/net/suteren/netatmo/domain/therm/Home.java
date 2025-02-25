@@ -28,9 +28,9 @@ import net.suteren.netatmo.PairSerializer;
  * @param thermSetPointDefaultDuration default itme of the temperature override.
  * @param thermSetpointDefaultDuration default itme of the temperature override.
  * @param thermBoostDefaultDuration default itme of the temperature boost.
- * @param temperatureControlMode
- * @param thermMode
- * @param schedules
+ * @param temperatureControlMode The temperature control mode.
+ * @param thermMode The therm mode.
+ * @param schedules The schedules.
  */
 public record Home(
 	String id,
@@ -100,7 +100,7 @@ public record Home(
 	}
 
 	/**
-	 * Get a single room if it exists.
+	 * Get a single module if it exists.
 	 *
 	 * @param moduleId to be retrieved.
 	 * @return an {@link Optional} of a single {@link Module} if it exists.
