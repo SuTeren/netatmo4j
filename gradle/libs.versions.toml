@@ -1,6 +1,6 @@
 [versions]
 com-fasterxml-jackson = "2.18.3"
-info-picocli = "4.7.6"
+info-picocli = "4.7.7"
 org-slf4j = "2.0.17"
 
 junit-platform = "1.12.2" # Přidána verze pro junit-platform
