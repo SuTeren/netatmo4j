@@ -3,7 +3,7 @@ com-fasterxml-jackson = "2.19.0"
 info-picocli = "4.7.7"
 org-slf4j = "2.0.17"
 
-junit-platform = "1.12.2" # Přidána verze pro junit-platform
+junit-platform = "1.13.0" # Přidána verze pro junit-platform
 org-junit-jupiter = "5.12.2"
 
 [libraries]
