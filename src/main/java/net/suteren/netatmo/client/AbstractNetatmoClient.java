@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import net.suteren.netatmo.Version;
 
 /**
  * boilerplate for specific Netatmo API calls.
@@ -118,8 +119,27 @@ public abstract class AbstractNetatmoClient {
 		throws IOException, ConnectionException, URISyntaxException, InterruptedException {
 		connection = ((HttpURLConnection) (new URL(constructUrl(path, params)).openConnection()));
 		connection.setRequestMethod(method);
-		connection.setDoOutput(true);
-		connection.setRequestProperty("Content-Type", contentType);
+		// Reasonable timeouts
+		connection.setConnectTimeout(15000);
+		connection.setReadTimeout(30000);
+
+		boolean hasBody = content != null;
+		if (hasBody) {
+			connection.setDoOutput(true);
+			if (contentType != null) {
+				connection.setRequestProperty("Content-Type", contentType);
+			}
+		}
+
+		// Default headers
+		connection.setRequestProperty("Accept", Optional.ofNullable(headers).map(h -> h.get("Accept")).orElse("application/json"));
+		try {
+			String userAgent = Optional.ofNullable(headers).map(h -> h.get("User-Agent"))
+				.orElse("netatmo4j/" + Version.getVersion());
+			connection.setRequestProperty("User-Agent", userAgent);
+		} catch (Throwable t) {
+			connection.setRequestProperty("User-Agent", "netatmo4j");
+		}
 
 		Optional.ofNullable(headers)
 			.map(Map::entrySet)
@@ -127,10 +147,10 @@ public abstract class AbstractNetatmoClient {
 			.forEach(e -> connection.setRequestProperty(e.getKey(), e.getValue()));
 
 		log.debug("URL: {}", getConnection().getURL());
-		log.debug("Content: {}", content);
+		log.debug("Content present: {}", hasBody);
 		log.debug("Headers: {}", getConnection().getRequestProperties());
 
-		if (content != null) {
+		if (hasBody) {
 			if (content instanceof Reader reader) {
 				IOUtils.copy(reader, connection.getOutputStream());
 			} else if (content instanceof InputStream inputStream) {
@@ -142,15 +162,30 @@ public abstract class AbstractNetatmoClient {
 			}
 		}
 
-		if (connection.getResponseCode() == 200) {
-			return (InputStream) connection.getContent();
+		int code = connection.getResponseCode();
+		if (code >= 200 && code < 300) {
+			return connection.getInputStream();
 		} else {
 			NetatmoError netatmoError;
-			String errorMessage = IOUtils.toString(connection.getErrorStream());
+			String errorMessage;
+			InputStream es = connection.getErrorStream();
+			if (es != null) {
+				errorMessage = IOUtils.toString(es, StandardCharsets.UTF_8);
+			} else {
+				InputStream is = null;
+				try {
+					is = connection.getInputStream();
+					errorMessage = is != null ? IOUtils.toString(is, StandardCharsets.UTF_8) : connection.getResponseMessage();
+				} catch (IOException ioe) {
+					errorMessage = connection.getResponseMessage();
+				} finally {
+					if (is != null) try { is.close(); } catch (IOException ignore) {}
+				}
+			}
 			try {
 				netatmoError = OBJECT_MAPPER.readValue(errorMessage, NetatmoError.class);
 			} catch (Exception e) {
-				netatmoError = new NetatmoError(new NetatmoError.NetatmoErrorInfo(-1L, errorMessage));
+				netatmoError = new NetatmoError(new NetatmoError.NetatmoErrorInfo((long) code, errorMessage));
 			}
 			throw new ConnectionException(connection, netatmoError.error());
 		}
