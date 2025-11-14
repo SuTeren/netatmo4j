@@ -136,7 +136,7 @@ public abstract class AbstractNetatmoClient {
 			} else if (content instanceof InputStream inputStream) {
 				IOUtils.copy(inputStream, connection.getOutputStream());
 			} else if (content instanceof String string) {
-				IOUtils.copy(IOUtils.toInputStream(string), connection.getOutputStream());
+				IOUtils.copy(IOUtils.toInputStream(string, StandardCharsets.UTF_8), connection.getOutputStream());
 			} else {
 				throw new IllegalStateException("Only InputStream, Reader or String are supported.");
 			}
@@ -145,7 +145,14 @@ public abstract class AbstractNetatmoClient {
 		if (connection.getResponseCode() == 200) {
 			return (InputStream) connection.getContent();
 		} else {
-			throw new ConnectionException(connection, OBJECT_MAPPER.readValue(connection.getErrorStream(), NetatmoError.class).error());
+			NetatmoError netatmoError;
+			String errorMessage = IOUtils.toString(connection.getErrorStream());
+			try {
+				netatmoError = OBJECT_MAPPER.readValue(errorMessage, NetatmoError.class);
+			} catch (Exception e) {
+				netatmoError = new NetatmoError(new NetatmoError.NetatmoErrorInfo(-1L, errorMessage));
+			}
+			throw new ConnectionException(connection, netatmoError.error());
 		}
 	}
 
