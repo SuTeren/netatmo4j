@@ -58,6 +58,7 @@ jacocoTestReport {
 }
 
 tasks.register('fatJar', Jar) {
+	group = LifecycleBasePlugin.BUILD_GROUP
 	manifest {
 		attributes 'Main-Class': 'net.suteren.netatmo.cli.NetatmoCli'
 	}
