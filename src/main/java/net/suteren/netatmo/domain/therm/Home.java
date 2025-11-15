@@ -59,7 +59,7 @@ public record Home(
 	 */
 	@JsonIgnore public Optional<Schedule> getScheduleById(String scheduleId) {
 		return schedules.stream()
-			.filter(s -> Objects.equals(s.id(), scheduleId))
+			.filter(s -> Objects.equals(s.effectiveId(), scheduleId))
 			.findAny();
 	}
 

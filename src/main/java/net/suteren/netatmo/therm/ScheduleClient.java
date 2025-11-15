@@ -23,7 +23,7 @@ public final class ScheduleClient extends AbstractApiClient {
 
 	public NetatmoResponse updateSchedule(Schedule schedule, String homeId) throws IOException, URISyntaxException, InterruptedException, ConnectionException {
 		schedule = schedule.toBuilder()
-			.scheduleId(schedule.getId())
+			.scheduleId(schedule.effectiveId())
 			.id(null)
 			.isDefaultZone(null)
 			.type(null)

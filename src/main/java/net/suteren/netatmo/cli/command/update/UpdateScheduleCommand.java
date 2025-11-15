@@ -36,16 +36,16 @@ class UpdateScheduleCommand extends AbstractCommand {
 					.zones(schedule.zones().stream()
 						.map(zone ->
 							zone.toBuilder()
-								.rooms(zone.rooms().stream()
-									.map(room ->
-										room.toBuilder()
-											.thermSetpointTemperature(zonePresets.getTemp(schedule.id(), zone.id(), room.id()))
-											.build())
-									.toList())
-								.build())
-						.toList())
-					.build(),
-				getHomeId());
+   					.rooms(zone.rooms().stream()
+   						.map(room ->
+   							room.toBuilder()
+   								.thermSetpointTemperature(zonePresets.getTemp(schedule.effectiveId(), zone.id(), room.id()))
+   								.build())
+   							.toList())
+   						.build())
+   					.toList())
+   				.build(),
+   			getHomeId());
 		} catch (IOException | InterruptedException e) {
 			throw new RuntimeException(e);
 		} catch (URISyntaxException e) {

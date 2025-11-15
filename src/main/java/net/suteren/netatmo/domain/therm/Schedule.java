@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +13,7 @@ import lombok.Builder;
 
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record Schedule(
 	@JsonProperty("id") String id,
 	@JsonProperty("home_id") String homeId,
@@ -26,7 +28,7 @@ public record Schedule(
 	String type
 ) {
 
-	@JsonIgnore public String getId() {
+	@JsonIgnore public String effectiveId() {
 		return Optional.ofNullable(id).orElse(scheduleId);
 	}
 

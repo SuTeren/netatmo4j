@@ -19,7 +19,7 @@ class ListSchedulesCommand extends AbstractListCommand<Schedule> {
 			.toList();
 	}
 
-	@Override public String format(Schedule home) {
-		return String.format("%25s : %s", home.id(), home.name());
+	@Override public String format(Schedule schedule) {
+		return String.format("%25s : %s", schedule.effectiveId(), schedule.name());
 	}
 }

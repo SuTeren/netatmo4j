@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.io.IOUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +36,9 @@ public abstract class AbstractNetatmoClient {
 	 * Mimetype of <code>x-www-form-urlencoded</code>.
 	 */
 	public static final String URLENCODED_CHARSET_UTF_8 = "application/x-www-form-urlencoded;charset=UTF-8";
-	protected static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+ protected static final ObjectMapper OBJECT_MAPPER = JsonMapper.builder()
+     .findAndAddModules()
+     .build();
 
 	/**
 	 * Base URL of the NEtatmo API server.
