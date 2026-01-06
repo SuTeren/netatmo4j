@@ -2,8 +2,8 @@
 com-fasterxml-jackson = "2.20.1"
 info-picocli = "4.7.7"
 org-slf4j = "2.0.17"
-junit-platform = "6.0.1" # Přidána verze pro junit-platform
 org-junit-jupiter = "6.0.2"
+junit-platform = "6.0.2" # Přidána verze pro junit-platform
 
 [libraries]
 com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "com-fasterxml-jackson" }
