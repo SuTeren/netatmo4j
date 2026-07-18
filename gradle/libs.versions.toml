@@ -20,7 +20,7 @@ org-junit-platform-launcher = { module = "org.junit.platform:junit-platform-laun
 org-junit-junit-bom = { module = "org.junit:junit-bom", version.ref = "junit-platform" }
 org-slf4j-slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "org-slf4j" }
 org-slf4j-slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "org-slf4j" }
-org-apache-ivy = "org.apache.ivy:ivy:2.5.3"
+org-apache-ivy = "org.apache.ivy:ivy:2.6.0"
 
 [plugins]
 com-github-ben-manes-versions = "com.github.ben-manes.versions:0.54.0"
