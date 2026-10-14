@@ -1,6 +1,18 @@
 ![gradle](https://github.com/konikvranik/netatmo4j/actions/workflows/gradle.yml/badge.svg)![codeql-analysis](https://github.com/konikvranik/netatmo4j/actions/workflows/codeql-analysis.yml/badge.svg)![release](https://github.com/konikvranik/netatmo4j/actions/workflows/gradle-publish.yml/badge.svg)[![codecov](https://codecov.io/gh/konikvranik/netatmo4j/graph/badge.svg?token=KXDRNR6D2N)](https://codecov.io/gh/konikvranik/netatmo4j)\
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=konikvranik_netatmo4j&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=konikvranik_netatmo4j)[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=konikvranik_netatmo4j&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=konikvranik_netatmo4j)[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=konikvranik_netatmo4j&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=konikvranik_netatmo4j)[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=konikvranik_netatmo4j&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=konikvranik_netatmo4j)[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=konikvranik_netatmo4j&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=konikvranik_netatmo4j)
 
+> [!WARNING]
+> **This project is no longer maintained.**
+>
+> Development and maintenance of netatmo4j ended on 2026-10-14. The repository is now archived and read-only.
+>
+> - No new features, bug fixes, or security updates will be provided.
+> - Existing releases remain available on [Maven Central](https://central.sonatype.com/artifact/net.suteren.netatmo/netatmo4j) and can still be used.
+> - Issues and pull requests are disabled.
+>
+> If you want to continue development, feel free to fork this repository.
+
+
 # netatmo4j
 
 Library for calling the Netatmo API and providing data in Java classes.
